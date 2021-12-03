@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext, Dispatch, SetStateAction } from "react"
 
-type Theme = "dark" | "light"
-type ThemeContextT = {
+export type Theme = "dark" | "light"
+export type ThemeContextT = {
   theme?: Theme
   toggleTheme?(): void
 }
 
 declare global {
   interface Window {
-    __setPreferredTheme(Theme): void
+    __setPreferredTheme(theme: Theme): void
     __theme: Theme
     __onThemeChange: Dispatch<SetStateAction<"dark" | "light">>
   }

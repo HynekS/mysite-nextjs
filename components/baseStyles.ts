@@ -15,7 +15,7 @@ const baseStyles = css`
   .dark {
     --bg-primary: #1a2633;
     --bg-secondary: ${colors.coolGray["900"]};
-    --text-primary: #9facbd;
+    --text-primary: #e9e1e1 /*#9facbd*/;
     --text-secondary: #e9e1e1;
     --color-primary: #e4d1bb; /* gold: */
     --color-links: #7ecbd7;

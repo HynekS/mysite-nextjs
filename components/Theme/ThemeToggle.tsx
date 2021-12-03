@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-import { useTheme } from "./ThemeContext"
+import { useTheme, Theme } from "./ThemeContext"
 import MoonIcon from "../MoonIcon"
 import SunIcon from "../SunIcon"
 
@@ -12,7 +12,7 @@ const ThemeToggle = () => {
     setMounted(true)
   }, [])
 
-  const isDark = theme => theme === "dark"
+  const isDark = (theme: Theme | undefined) => theme === "dark"
 
   return mounted ? (
     <button

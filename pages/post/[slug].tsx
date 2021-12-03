@@ -37,8 +37,8 @@ type PostProps = Omit<Schema.Post, "author" | "categories" | "mainImage"> & {
 }
 
 const Post = ({ post }: { post: PostProps }): JSX.Element => {
-  const articleRef = useRef<HTMLElement>(null)
-  const navRef = useRef<HTMLElement>(null)
+  const articleRef = useRef<HTMLDivElement>(null)
+  const navRef = useRef<HTMLDivElement>(null)
 
   useObserveActiveSection(navRef, articleRef)
 

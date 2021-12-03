@@ -53,7 +53,7 @@ module.exports = {
               content: '""',
               display: "none",
             },
-            "h1 ~ div p:first-of-type": {
+            "h1 ~ p:first-of-type": {
               fontSize: "calc(22/18 * 1em)",
               lineHeight: "calc(32/22)",
             },

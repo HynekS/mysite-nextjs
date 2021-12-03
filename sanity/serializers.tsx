@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useState } from "react"
 import BlockContent from "@sanity/block-content-to-react"
 import Popup from "reactjs-popup"
@@ -20,7 +22,8 @@ const serializers = {
 
     twitter: (props): JSX.Element => {
       const { id, ast } = props.node
-      return <Tweet id={id} ast={ast} />
+      //return <Tweet id={id} ast={ast} />
+      return <pre>{JSON.stringify(ast)}</pre>
     },
 
     figure: (props): JSX.Element => {
