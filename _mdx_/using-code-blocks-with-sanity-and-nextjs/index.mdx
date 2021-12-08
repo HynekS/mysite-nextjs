@@ -1,11 +1,24 @@
+---
+title: Using code blocks with Sanity and Nextjs
+slug: using-code-blocks-with-sanity-and-nextjs
+author: Hynek Svacha
+type:
+dateCreated: Apr 3, 2021 20:10
+dateLastModified:
+featuredImage: assets/thumbnail-Sanity-Next-code-block.jpg
+categories:
+keywords:
+description:
+---
+
 # Using code blocks with Sanity and Nextjs
 
 In this tutorial, we will create an _input for code blocks_ in **Sanity.io**. Subsequently, we will create a _component for displaying our code blocks_ in **Next.js** app.
 
 ## Prerequisities
 
-*   We already know how to install and use Sanity Studio (it is [pretty straighforward](https://www.sanity.io/docs/getting-started-with-sanity-cli)).
-*   We already know how to install Next.js and connect it to Sanity api. In the case of uncertainity, there is a [great tutorial on the company blog](https://www.sanity.io/blog/build-your-own-blog-with-sanity-and-next-js).
+*   We already know how to install and use Sanity Studio (it is [pretty straightforward](https://www.sanity.io/docs/getting-started-with-sanity-cli)).
+*   We already know how to install Next.js and connect it to Sanity api. In the case of uncertainty, there is a [great tutorial on the company blog](https://www.sanity.io/blog/build-your-own-blog-with-sanity-and-next-js).
 
 ## How to add the code input to Sanity
 
@@ -280,7 +293,7 @@ First, we need to create a custom styles for a highlighted line (I am using CSS 
 }
 ```
 
-The `highlightedLines` prop comes from Sanity code input in the shape of an array of line numbers.The simplest way how to use it would be checking on every line if the line number is included (e. g. using `Array.includes()` method), but this comes with _O(n2)_ complexity 🤔. I therefore recommend to convert the `higlightedLines` prop to a `Set`. Because `Set` itself has _O(1)_ complexity, the result should be _O(n)_, where _n_ is a number of lines 👍.
+The `highlightedLines` prop comes from Sanity code input in the shape of an array of line numbers.The simplest way how to use it would be checking on every line if the line number is included (e. g. using `Array.includes()` method), but this comes with _O(n<sup>2</sup>)_ complexity 🤔. I therefore recommend to convert the `higlightedLines` prop to a `Set`. Because `Set` itself has _O(1)_ complexity, the result should be _O(n)_, where _n_ is a number of lines 👍.
 
 When we encounter a line that is in our `Set`, we simply add a proper `className` to its props.
 
@@ -325,6 +338,6 @@ const HighlightedCode = ({ code, language, highlightedLines }) => {
 
 ## Conclusion
 
-I hope this article helps you with creating wonderful colorful code snippets.
+I hope this article helps you with creating wonderful colorful code snippets. Thank you for reading.
 
 👍 Enjoy!

@@ -1,18 +1,7 @@
 import { forwardRef } from "react"
 import tw, { css } from "twin.macro"
 
-type Branch = Array<{
-  slug: string
-  title: string
-  nodes: Array<Branch>
-}>
-
-type Node = {
-  nodes?: undefined | Node[]
-  title?: string
-  slug?: string
-  level?: number
-}
+import type { Node } from "./index"
 
 const RecursiveList = forwardRef<HTMLElement, { tree: Node[] }>(
   ({ tree }, ref): JSX.Element => (

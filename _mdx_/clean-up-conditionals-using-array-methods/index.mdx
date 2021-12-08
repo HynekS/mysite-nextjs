@@ -1,0 +1,74 @@
+---
+title: Clean up your conditionals with array methods
+slug: clean-up-conditionals-using-array-methods
+author: Hynek Svacha
+type:
+dateCreated: Dec 26, 2020 22:31
+dateLastModified:
+featuredImage:
+categories:
+keywords:
+description:
+---
+
+# Clean up your conditionals with array methods
+
+```js
+let ham = 10
+let pineapple = 20
+let tomatoSauce = 12
+
+if (ham > 0 && pineapple > 0 && tomatoSauce > 0) {
+  console.log("Hooray! Can make pineapple pizza")
+}
+```
+
+## Array.every()
+
+```js
+let assets = [ham, pineapple, tomatoSauce]
+
+if (assets.every(asset => asset > 0)) {
+  console.log("Hooray! Can make pineapple pizza")
+}
+```
+
+## Array.some()
+
+```js
+if (assets.some(asset => asset < 1)) {
+  console.log("So sad, can't make the best pizza")
+}
+```
+
+## Array.includes()
+
+```js
+if (assets.includes('pineapple')) {
+	
+}
+```
+
+## Extract the logic into a predicate function
+
+```js
+const hasAssetsForPineapplePizza = assets => assets.every(asset => asset > 0)
+
+if (hasAssetsForPineapplePizza(assets)) {
+  console.log("Hooray! Can make pineapple pizza")
+}
+```
+
+
+
+## Using `Set` instead of `Array`
+
+```js
+// O(1)
+
+const setOfAssets = new Set(assets)
+
+if (setOfAssets.has('pineapple')) {
+  //...
+}
+```

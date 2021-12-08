@@ -1,12 +1,24 @@
+---
+title: Pretty PowerShell with Windows Terminal, posh-git and oh-my-posh
+slug: pretty-powershell-with-windows-terminal-posh-git-and-oh-my-posh
+author: Hynek Svacha
+type:
+dateCreated: Mar 27, 2021, 09:16 PM
+dateLastModified:
+featuredImage: assets/windows-terminal-main-image.jpg
+categories:
+keywords:
+description:
+---
+
 # Pretty PowerShell with Windows Terminal, posh-git and oh-my-posh
 
-As a long-term windows user, I always felt a twinge of envy for the Mac users whenever I seen their joyful, colorful terminals. In comparison, the windows command line prompt looked like their broke, penniless relative. The PowerShell, blue as a screen of death, was't much better (in the terms of look, not the features – these were pretty cool).
+As a long-term Windows user, I always felt a twinge of envy for the Mac users whenever I seen their joyful, colorful terminals. In comparison, the windows command line prompt looked like their broke, penniless relative. The PowerShell, blue as a screen of death, was't much better (in the terms of look, not the features – these were pretty cool).
 
-Well, the time has changed! For me, the first breeze of fresh air was the [Cmder](https://cmder.net/) prompt, which I was happy using for a while and can definitely recommend. But I was greedy and I wanted more. And I've got it – with the customized new Windows Terminal.
-
+Well, the time has changed! For me, the first breeze of fresh air was the [Cmder](https://cmder.net/) prompt, which I was happily using for a while and can definitely recommend. But I was greedy and I wanted more. And I've got it – with the customized new Windows Terminal.
 If you see the images and want to make your command line look like that, follow along.
 
-**TODO – retrieve the Gallery!**
+**TODO – recreate the Gallery!**
 
 ## Get the terminal
 
@@ -141,10 +153,10 @@ For the background image, I searched through the [DeviantArt](https://deviantart
 I also tweaked the default prompt a little. I don't want to see the full path, just the username and current working directory. So in the `<USER>/Documents/oh-my-posh/<VERSION>/themes` folder, I opened the `Paradox.psm1` file (as it is my theme) and changed the `$path` variable like that:
 
 ```PowerShell
-  # original:
-  # $path = Get-FullPath -dir $pwd
-  # changed to:
-  $path = (Split-Path -leaf -path (Get-Location))
+# original:
+# $path = Get-FullPath -dir $pwd
+# changed to:
+$path = (Split-Path -leaf -path (Get-Location))
 ```
 
 👍 Enjoy!

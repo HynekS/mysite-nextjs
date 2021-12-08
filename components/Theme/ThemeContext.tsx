@@ -16,7 +16,11 @@ declare global {
 
 const ThemeContext = React.createContext<ThemeContextT>({})
 
-export function ThemeProvider({ children }) {
+type ChildrenProps = {
+  children?: React.ReactNode
+}
+
+export function ThemeProvider({ children }: ChildrenProps) {
   const [theme, setTheme] = useState(global.window?.__theme || "light")
   const toggleTheme = () => {
     global.window.__setPreferredTheme(theme === "light" ? "dark" : "light")
