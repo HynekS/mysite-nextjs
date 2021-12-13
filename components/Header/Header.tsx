@@ -4,7 +4,7 @@ import { ThemeToggle } from "../Theme"
 
 const Header = (): JSX.Element => {
   return (
-    <header tw="flex justify-between p-4">
+    <header tw="flex justify-between p-4 pr-8">
       <Link href="/">
         <a>HynekS</a>
       </Link>

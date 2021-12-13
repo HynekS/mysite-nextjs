@@ -33,12 +33,18 @@ module.exports = {
             "h2, h3, h4, h5, h6": {
               marginBottom: "0.25em",
             },
-            "a[href]": {
+            /*
+            "h2 > a, h3 > a, h4 > a, h5 > a, h6 > a": {
+              color: "var(--text-primary)",
+              background
+            },  
+            "a[href] :not(h2 > a, h3 > a, h4 > a, h5 > a, h6 > a)": {
               color: "var(--color-links)",
               backgroundColor: "#e7f6f7",
               padding: "0.1em 0.2em",
               borderRadius: "0.1em",
             },
+            */
             code: {
               backgroundColor: "var(--bg-secondary)",
               borderRadius: 4,

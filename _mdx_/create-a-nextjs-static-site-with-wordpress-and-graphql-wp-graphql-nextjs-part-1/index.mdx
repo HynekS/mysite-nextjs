@@ -1,9 +1,8 @@
 ---
 title: Create a Next.js static site with Wordpress and GraphQL (WP GraphQL + Next.js, part 1)
-slug: create-a-nextjs-static-site-with-wordpress-and-graphql-wp-graphql-nextjs-part-1
 author: Hynek Svacha
 type:
-dateCreated:
+dateCreated: Nov 7, 2021 13:46 
 dateLastModified:
 featuredImage:
 categories:
@@ -41,7 +40,7 @@ In our freshly created project root directory, there is an `.env` file. Unlike t
 
 After installing and setting up our project, let's open its root folder and install the **WP GraphQL** plugin, also using Composer. Let's open the `composer.json` file (it's in the root directory) and add `wpackagist-plugin/wp-graphql` to the list of dependencies (under `required`), like that:
 
-```json lines=1,9-10
+```json lines=14
 // composer.json
 
 // ...
@@ -78,7 +77,7 @@ Also, check the plugin settings (see image below). We didn't need to change any 
 
 One more thing: Right now, if we use a fresh new install with and empty database, there are barely any data to query (just the default 'Hello World' post), which is kind of dull. Let's create more posts! We'll use the 'Faker Press' plugin.
 
-```json
+```json lines=15
 // composer.json
 
 // ...

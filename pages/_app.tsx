@@ -3,10 +3,13 @@ import { Global } from "@emotion/react"
 import { GlobalStyles } from "twin.macro"
 import { MDXProvider } from "@mdx-js/react"
 
+import Lightbox from "@/components/Lightbox"
 import { ThemeProvider } from "../components/Theme"
 import baseStyles from "./../components/baseStyles"
 
-const components = {}
+const components = {
+  Lightbox,
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

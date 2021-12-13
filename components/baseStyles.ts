@@ -43,8 +43,9 @@ const baseStyles = css`
 
   html {
     height: 100%;
+    width: 100vw;
     scroll-behavior: smooth;
-    overflow-y: overlay;
+    /*overflow-y: overlay;*/
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
 
@@ -61,9 +62,13 @@ const baseStyles = css`
   #__next {
     height: 100%;
     min-height: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    /*
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-auto-columns: 100%;
+    */
   }
 
   h1,

@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { serialize } from "next-mdx-remote/serialize"
 import { MDXRemote } from "next-mdx-remote"
-// @ts-ignore
+
 import matter from "gray-matter"
 // @ts-ignore
 import { preToCodeBlock } from "mdx-utils"
@@ -12,10 +12,12 @@ import { onlyText } from "react-children-utilities"
 import path from "path"
 import fs from "fs"
 import slugify from "slugify"
+import readingTime from "reading-time"
 
 import HighlightedCode from "@/components/HighlightedCode"
 import Container from "@/components/Container"
 import RecursiveList, { createTableOfContents } from "@/components/RecursiveList"
+import Lightbox from "@/components/Lightbox"
 import useObserveActiveSection from "@/hooks/useObserveActiveSection"
 
 import type { ReactNode } from "react"
@@ -51,20 +53,24 @@ export type ImageProps = {
 }
 
 const Image = ({ fileName, alt = "", slug, ...props }: ImageProps) => {
-  let src = require(`../../_mdx_/${slug}/${fileName}`)
+  let src = require(`_mdx_/${slug}/${fileName}`)
 
   return <img src={src} alt={alt} {...props} />
 }
 
-type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+type HeadingTag = "h2" | "h3" | "h4" | "h5" | "h6"
 
-const headings = ["h1", "h2", "h3", "h4", "h5", "h6"].map(headingTag => [
+const headings = ["h2", "h3", "h4", "h5", "h6"].map(headingTag => [
   headingTag,
   ({ children }: { children: ReactNode }) => {
     const idText = slugify(onlyText(children), { lower: true, strict: true })
     const Tag = headingTag as HeadingTag
 
-    return <Tag id={idText}>{children}</Tag>
+    return (
+      <Tag id={idText}>
+        <Link href={`#${idText}`}>{children}</Link>
+      </Tag>
+    )
   },
 ])
 
@@ -79,8 +85,19 @@ type PreProps = {
   children?: ReactNode
 }
 
-const components = (slug: string): Components => ({
+const components = (slug: string, meta): Components => ({
   ...Object.fromEntries(headings),
+  h1: props => {
+    console.log(props)
+    return (
+      <>
+        <h1>{props.children}</h1>
+        <div>
+          {meta.dateCreated} • by {meta.author} • {meta.timeToRead.text}
+        </div>
+      </>
+    )
+  },
   a: ({ href, children, ...props }: LinkProps) => (
     <InternalExternalLink href={href} children={children} {...props} />
   ),
@@ -95,9 +112,22 @@ const components = (slug: string): Components => ({
   },
 
   img: ({ src, alt = "", ...props }: ImgProps) => {
-    return <Image fileName={src} alt={alt} slug={slug} {...props} />
+    return <Lightbox images={[{ src, alt }]} slug={slug} />
   },
 })
+
+type Meta = {
+  title?: string
+  author?: string
+  type?: string
+  dateCreated?: string
+  dateLastModified?: string
+  featuredImage?: string
+  categories?: string[]
+  keywords?: string[]
+  description?: string
+  timeToRead?: typeof readingTime
+}
 
 export default function Post({
   source,
@@ -105,8 +135,6 @@ export default function Post({
   content,
   meta,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log({ meta })
-
   const articleRef = useRef<HTMLDivElement>(null!)
   const navRef = useRef<HTMLDivElement>(null!)
 
@@ -121,10 +149,8 @@ export default function Post({
           ref={articleRef}
           tw="prose prose-sm mx-auto pt-8 px-4 md:(prose) lg:(prose-lg px-0) dark:(prose-dark)"
         >
-          {meta.featuredImage ? (
-            <img src={require(`../../_mdx_/${slug}/${meta.featuredImage}`)} />
-          ) : null}
-          <MDXRemote {...source} components={components(slug)} />
+          {meta.featuredImage ? <img src={require(`_mdx_/${slug}/${meta.featuredImage}`)} /> : null}
+          <MDXRemote {...source} components={components(slug, meta)} scope={meta} />
         </article>
       </div>
     </Container>
@@ -136,12 +162,13 @@ export const getStaticProps = async (context: GetStaticPropsContext<{ slug: stri
   const filePath = path.join(process.cwd(), `_mdx_/${slug}/index.mdx`)
   const rawContents = fs.readFileSync(filePath, "utf8")
 
-  const { content, data: meta } = matter(rawContents)
+  const { content, data: meta }: { content: string; data: Meta } = matter(rawContents)
+  const timeToRead = readingTime(content, { wordsPerMinute: 150 })
   const mdxSource = await serialize(content, {
     scope: meta,
   })
 
-  return { props: { source: mdxSource, slug, content, meta } }
+  return { props: { source: mdxSource, slug, content, meta: { ...meta, timeToRead } } }
 }
 
 export const getStaticPaths = async () => {
