@@ -1,13 +1,20 @@
 ---
 title: Create a Next.js static site with Wordpress and GraphQL (WP GraphQL + Next.js, part 1)
 author: Hynek Svacha
-type:
+type: blog post
 dateCreated: Nov 7, 2021 13:46 
 dateLastModified:
 featuredImage:
 categories:
+  - nextjs
+  - wordpress
+  - graphql
 keywords:
-description:
+  - nextjs
+  - wordpress
+  - graphql
+  - jamstack
+description: How to create a JAMstack static site using headless WordPress, Next.js and GraphQL
 ---
 
 # Create a Next.js static site with Wordpress and GraphQL (WP GraphQL + Next.js, part 1)
@@ -461,7 +468,7 @@ When the *serve* is installed, let's open the `package.json` file and add two sc
   // ...
 ```
 
-The `export` script combines the `build` script (which creates a production build that can be server-side rendered) and the `export` script (which takes the production build and creates a fully static site out of it). The `static` command adds three more steps – it navigates to the `/out` directory, where the static build is located; it opens the default browser on [http://localhost:5000](hhttp://localhost:5000) and starts the http server pointing to that port.
+The `export` script combines the `build` script (which creates a production build that can be server-side rendered) and the `export` script (which takes the production build and creates a fully static site out of it). The `static` command adds three more steps – it navigates to the `/out` directory, where the static build is located; it opens the default browser on [http://localhost:5000](http://localhost:5000) and starts the http server pointing to that port.
 
 Let's try it:
 

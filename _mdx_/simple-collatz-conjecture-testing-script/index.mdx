@@ -1,20 +1,25 @@
 ---
 title: Simple Collatz Conjecture testing script
 author: Hynek Svacha
-type:
+type: blog post
 dateCreated: Dec 1, 2021 13:10 
 dateLastModified:
 featuredImage:
 categories:
+  - javascript
+  - nodejs
 keywords:
-description:
+  - JavaScript
+  - Node.js
+  - Collatz Conjecture
+description: Fiddling with a simple Node.js script for testing Collatz Conjecture, the simple yet still unsolved math problem.
 ---
 
 # Simple Collatz Conjecture testing script
 
 It is seemingly a simple problem: We take a number _n_. If _n_ is even, divide it by 2. If it's odd, multiply it by 3, then add 1. Proceed with the resulting number (the result is our new _n_). The conjecture is that no matter what the initial value is, the sequence will always results in a _4 – 2 – 1_ loop.
 
-My older son (eight years old) developed some passion for math. I'd like to feed his passion as far as I could (sadly, math is generally considered unpopular amongst kids in this part of the world). So I introduced him to the above mentioned problem – the _Collatz Conjecture_.
+My older son (eight years old) developed some passion for math. Because I'd like to feed his passion as far as I could, I introduced him to the above mentioned problem – the [Collatz Conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture).
 
 The problem that "looks very simple, but even the most famous and clever mathematicians with the help of the fastest computers haven't solved it yet 🤷" actually caught his attention. We tried to test a couple of numbers just with paper and pen. It was fine, but as soon as we finish the first one, I was itching to write some code that will test the number and relieve us of the chores of manually counting every step.
 

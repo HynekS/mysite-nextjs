@@ -3,6 +3,10 @@ const colors = require("tailwindcss/colors")
 import tw, { css } from "twin.macro"
 
 const baseStyles = css`
+  #root {
+    --article-width: 70ch;
+  }
+
   .light {
     --bg-primary: ${colors.gray["50"]};
     --bg-secondary: ${colors.coolGray["200"]};
@@ -15,7 +19,7 @@ const baseStyles = css`
   .dark {
     --bg-primary: #1c232e /*#1a2633*/;
     --bg-secondary: ${colors.coolGray["900"]};
-    --text-primary: #d4cece /*#e9e1e1, #9facbd*/;
+    --text-primary: #d4cece;
     --text-secondary: #e9e1e1;
     --color-primary: #e4d1bb; /* gold: */
     --color-links: #7ecbd7;

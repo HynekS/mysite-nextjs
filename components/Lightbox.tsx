@@ -3,7 +3,12 @@ import Popup from "reactjs-popup"
 import { XIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline"
 import tw, { css } from "twin.macro"
 
-const Lightbox = (props): JSX.Element => {
+type LightboxProps = {
+  images: Array<{ src: string; alt: string }>
+  slug: string
+}
+
+const Lightbox = (props: LightboxProps): JSX.Element | null => {
   const { images = [], slug } = props
 
   const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -13,7 +18,7 @@ const Lightbox = (props): JSX.Element => {
   const rotateIndexIfOutOfLimits = (i: number, len: number = images.length) =>
     ((i % len) + len) % len
 
-  const handleKeyUp = (e: KeyboardEvent, idx) => {
+  const handleKeyUp = (e: KeyboardEvent, idx: number) => {
     console.log(e.key, idx)
 
     const nextKeys = ["ArrowRight", "ArrowDown", "PageDown", "D", "X"]
@@ -84,7 +89,7 @@ const Lightbox = (props): JSX.Element => {
           }
         `}
       >
-        {close => (
+        {(close: () => void) => (
           <div
             tw="relative flex items-center justify-center max-w-full max-h-screen rounded"
             className="group"
