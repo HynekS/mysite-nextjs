@@ -63,6 +63,24 @@ const baseStyles = css`
     ${tw`h-full transition-all duration-200 bg-primary text-primary font-base`}
   }
 
+  body.light {
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 60%,
+      rgb(224 251 257) 110%
+    );
+  }
+
+  body.dark {
+    background: radial-gradient(
+      circle,
+      rgba(28, 35, 46, 1) 0%,
+      rgba(28, 35, 46, 1) 0%,
+      rgba(17, 24, 35, 1) 110%
+    );
+  }
+
   #__next {
     height: 100%;
     min-height: 100%;

@@ -1,4 +1,5 @@
 import indicator from "ordinal/indicator"
+import { TwStyle } from "twin.macro"
 
 type Unit = keyof typeof units
 
@@ -35,8 +36,8 @@ const getRelativeTime = (
 type PublishDateProps = {
   createdAt: Date
   locale?: string
-  dateStyles?: string
-  prepositionStyles?: string
+  dateStyles?: TwStyle | string
+  prepositionStyles?: TwStyle | string
   relativePreposition?: string
   absolutePreposition?: string
 }

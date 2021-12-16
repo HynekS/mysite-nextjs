@@ -179,10 +179,10 @@ export default function Post({
         }}
       />
       <Container>
-        <aside tw="w-1/5">
+        <aside tw="hidden md:(block w-1/5)">
           {toc ? <RecursiveList tree={toc} ref={navRef}></RecursiveList> : null}
         </aside>
-        <main tw="flex-auto margin-right[calc((50% - 30ch)/2)]">
+        <main tw="flex-auto max-w-full margin-right[calc((50% - 30ch)/2)]">
           <article
             ref={articleRef}
             tw="prose prose-sm mx-auto pt-8 px-4 md:(prose) lg:(prose-lg px-0) dark:(prose-dark)"
