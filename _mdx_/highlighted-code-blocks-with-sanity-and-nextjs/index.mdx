@@ -115,7 +115,9 @@ When it comes to rendering our code blocks on the front end, we have basically t
 
 In either case, we need to install another official module, [block-content-to-react](https://github.com/sanity-io/block-content-to-react).
 
+```sh
 npm i @sanity/block-content-to-react
+```
 
 This module contains default serializers for portable text (like headings, paragraphs etc.). Unfortunately, code blocks are not among the defaults, hence we'll need to create a dedicated serializer ourselves. The serializers will be used as a prop in our `<BlockContent />` component (probably in a of post template, but that exceeds the scope of this post).
 

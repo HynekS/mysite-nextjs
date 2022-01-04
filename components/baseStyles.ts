@@ -3,10 +3,6 @@ const colors = require("tailwindcss/colors")
 import tw, { css } from "twin.macro"
 
 const baseStyles = css`
-  #root {
-    --article-width: 70ch;
-  }
-
   .light {
     --bg-primary: ${colors.gray["50"]};
     --bg-secondary: ${colors.coolGray["200"]};
@@ -62,7 +58,7 @@ const baseStyles = css`
   body {
     ${tw`h-full transition-all duration-200 bg-primary text-primary font-base`}
   }
-
+  /*
   body.light {
     background: radial-gradient(
       circle,
@@ -71,12 +67,12 @@ const baseStyles = css`
       rgb(224 251 257) 110%
     );
   }
-
+  */
   body.dark {
     background: radial-gradient(
       circle,
       rgba(28, 35, 46, 1) 0%,
-      rgba(28, 35, 46, 1) 0%,
+      rgba(28, 35, 46, 1) 30%,
       rgba(17, 24, 35, 1) 110%
     );
   }
@@ -86,11 +82,6 @@ const baseStyles = css`
     min-height: 100%;
     scroll-behavior: smooth;
     overflow-x: hidden;
-    /*
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-auto-columns: 100%;
-    */
   }
 
   h1,
@@ -102,7 +93,6 @@ const baseStyles = css`
     ${tw`font-display`}
   }
 
-  ,
   [id] {
     scroll-margin-top: 2ex;
   }
