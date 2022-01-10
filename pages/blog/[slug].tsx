@@ -11,6 +11,7 @@ import { preToCodeBlock } from "mdx-utils"
 import { onlyText } from "react-children-utilities"
 import path from "path"
 import fs from "fs"
+import { execSync } from "child_process"
 
 import HighlightedCode from "@/components/HighlightedCode"
 import Container from "@/components/Container"
@@ -115,6 +116,7 @@ export type Meta = {
   type?: string
   dateCreated?: string
   dateLastModified?: string
+  dateLastModifiedFromGit?: string
   featuredImage?: string
   categories?: string[]
   keywords?: string[]
@@ -191,7 +193,8 @@ export default function Post({
               <img src={require(`_mdx_/${slug}/${meta.featuredImage}`)} />
             ) : null}
             <MDXRemote {...source} components={components(slug, meta)} scope={meta} />
-            <span>last modified: {meta.dateLastModified}</span>
+            <p>last modified fs: {new Date(meta.dateLastModified).toDateString()}</p>
+            <p>last modified git: {new Date(meta.dateLastModifiedFromGit).toDateString()}</p>
           </article>
         </main>
       </Container>
@@ -203,6 +206,9 @@ export const getStaticProps = async (context: GetStaticPropsContext<{ slug: stri
   const slug = String(context.params?.slug)
   const filePath = path.join(process.cwd(), `_mdx_/${slug}/index.mdx`)
   const rawContents = fs.readFileSync(filePath, "utf8")
+
+  const gitAuthorTime = execSync(`git log -1 --pretty=format:%aI ${filePath}`)
+
   const { mtime } = fs.statSync(filePath)
 
   const { content, data: meta }: { content: string; data: Meta } = matter(rawContents)
@@ -216,7 +222,12 @@ export const getStaticProps = async (context: GetStaticPropsContext<{ slug: stri
       source: mdxSource,
       slug,
       content,
-      meta: { ...meta, timeToRead, dateLastModified: JSON.stringify(mtime.toString()) },
+      meta: {
+        ...meta,
+        timeToRead,
+        dateLastModified: JSON.stringify(mtime.toString()),
+        dateLastModifiedFromGit: gitAuthorTime.toString(),
+      },
     },
   }
 }
